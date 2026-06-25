@@ -1,3 +1,95 @@
 [user]
 	name = JWoong-Lunit
 	email = jwoong.shin@lunit.io
+
+[init]
+    defaultBranch = main
+
+[commit]
+    verbose = true               # show the full diff in the commit-message editor
+
+[core]
+    editor = vim
+    pager = less -FRX            # don't page if it fits on one screen
+    autocrlf = input
+
+[column]
+    ui = auto
+
+[branch]
+    sort = -committerdate        # most recent branches first
+
+[tag]
+    sort = version:refname
+
+[pull]
+    rebase = true                # avoid noisy merge commits on pull
+
+[push]
+    default = simple
+    autoSetupRemote = true       # `git push` works on fresh branches
+    followTags = true
+
+[fetch]
+    prune = true                 # drop deleted remote branches on fetch
+    pruneTags = true
+
+[rebase]
+    autoStash = true
+    autoSquash = true
+    updateRefs = true            # keep stacked branches in sync
+
+[merge]
+    conflictStyle = zdiff3       # shows the common ancestor in conflicts
+
+[diff]
+    algorithm = histogram
+    colorMoved = default
+    mnemonicPrefix = true        # i/ (index) w/ (working) instead of a/ b/
+
+[rerere]
+    enabled = true               # remember conflict resolutions
+
+[help]
+    autocorrect = prompt
+
+[color]
+    ui = auto
+    
+[credential "https://github.com"]
+	helper = 
+	helper = !/mise/installs/github-cli/2.92.0/gh_2.92.0_linux_amd64/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/mise/installs/github-cli/2.92.0/gh_2.92.0_linux_amd64/bin/gh auth git-credential
+
+# =============================================================
+#  Aliases
+# =============================================================
+[alias]
+    st = status -sb
+    co = checkout
+    sw = switch
+    br = branch
+    ci = commit
+    cm = commit -m
+    amend = commit --amend --no-edit
+    unstage = restore --staged
+    last = log -1 HEAD --stat
+
+    # readable history
+    lg = log --graph --abbrev-commit --decorate \
+         --format=format:'%C(bold blue)%h%C(reset) %C(dim white)%an%C(reset) %C(green)(%ar)%C(reset)%C(auto)%d%C(reset)%n          %s'
+    ls = log --oneline -20
+
+    # worktrees (you use these a lot)
+    wt = worktree
+    wtl = worktree list
+    wta = worktree add
+    wtr = worktree remove
+
+    # quick fixes
+    aliases = config --get-regexp '^alias\\.'
+    root = rev-parse --show-toplevel
+    undo = reset --soft HEAD~1
+    wip = "!git add -A && git commit -m 'wip' --no-verify"

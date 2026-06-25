@@ -1,0 +1,12 @@
+# readline configuration
+
+# Keep default emacs bindings, then add ours
+$include /etc/inputrc
+
+# History search with arrow keys (prefix-aware)
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+
+# Completion behavior
+set completion-ignore-case on
+set show-all-if-ambiguous on
